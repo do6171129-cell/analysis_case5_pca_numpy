@@ -30,10 +30,8 @@ def pca(X: np.ndarray) -> dict:
     #寄与率
     explained_ratio = eigvals / eigvals.sum()
 
-    # （次：共分散へ続く）
     return {
         "mean": mean,
-        # 仮置き（次で埋める）
         "eigvals": eigvals,
         "components": components,
         "scores": scores,
