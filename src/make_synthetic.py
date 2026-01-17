@@ -9,34 +9,34 @@ import pandas as pd
 
 
 def main() -> None:
-    # ===== settings =====
+    # 設定
     seed = 42
-    n = 500          # samples
-    d = 5            # observed dims
-    k = 2            # latent dims
-    sigma = 0.3      # noise std
+    n = 500          # サンプル数
+    d = 5            # 観測次元数
+    k = 2            # 潜在次元数
+    sigma = 0.3      # ノイズの標準偏差
 
     rng = np.random.default_rng(seed)
 
-    # ===== latent factors Z: (n, k) =====
+    # 潜在因子 Z: (n, k)
     Z = rng.normal(loc=0.0, scale=1.0, size=(n, k))
 
-    # ===== mixing matrix W: (k, d) =====
+    # 混合行列 W: (k, d)
     W = np.array([
         [1.2, 1.0, 0.8, 0.1, 0.0],
         [0.0, 0.2, 0.3, 1.0, 1.1],
     ], dtype=float)
 
-    # sanity
+    # 形状チェック
     assert W.shape == (k, d)
 
-    # ===== noise E: (n, d) =====
+    # ノイズ E: (n, d)
     E = rng.normal(loc=0.0, scale=sigma, size=(n, d))
 
-    # ===== observed X: (n, d) =====
+    # 観測データ X: (n, d)
     X = Z @ W + E
 
-    # ===== save =====
+    # 保存処理 
     data_dir = Path("../data")
     data_dir.mkdir(parents=True, exist_ok=True)
 
