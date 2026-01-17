@@ -36,7 +36,7 @@ def main() -> None:
     # 観測データ X: (n, d)
     X = Z @ W + E
 
-    # 保存処理 
+    # 保存処理
     data_dir = Path("../data")
     data_dir.mkdir(parents=True, exist_ok=True)
 
